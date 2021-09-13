@@ -1,0 +1,64 @@
+공통
+react-calendar__tile
+
+평일
+react-calendar__month-view__days__day
+
+
+주말
+react-calendar__month-view__days__day--weekend
+
+
+오늘
+calendar__tile--now                  
+
+
+        <div>
+            <Clalendar></Clalendar>//달력
+            <Getlist></Getlist>//할일을 받아옴 
+            <div>
+                {/* list */}//리스트 출력 위치
+            </div>
+            <Fotter></Fotter>//출력제어 컨트롤러
+        </div>
+
+
+Getlist(props) {  ---->  TodoCreate
+    return (
+        <div>
+            <input type="text" placeholder="what needs to be done?"/>
+            <button>download</button>
+        </div>
+    );
+
+
+controlList.jsx    -->  Template.js
+
+ const [ListDatas,SetListDatas] = useState([{ //모든 일정들을 이배열이 저장합니다.
+        id:0//key value
+        text:"일하기 싫당",//할일
+        clear:false,//완료여부
+        show:true,//보여줄지 말지출력
+        day:"5/2"//만든 날짜
+    },
+    {
+        id:1
+        text:"일하고 싶다",
+        clear:true,
+        show:true,
+        day:"5/3"
+    },
+    {
+        id:2
+        text:"일하기 싫어",
+        clear:false,
+        show:true,
+        day:"5/4"
+    }
+    ]);
+    
+    var list;
+    
+    list=ListDatas.map((info)=>(<List key={info.id} state={info}></List>)); //출력용설정
+
+	TodoList ---> TodoItem
