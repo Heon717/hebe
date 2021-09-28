@@ -2,7 +2,7 @@
     font-size: 1.5vh;
     position: absolute;
     top: 120px;
-    right: 20vh;
+    right: 10vw;
     width: 498px;
     height: 680px;
     display: flex; /* display 설정해줘야 아래 flex로 해주면 direction 선택가능*/
@@ -77,6 +77,14 @@ tr {
     flex-direction: row;
 }
 
+tr > td:first-child > span{
+    color: red;
+}
+
+tr > td:last-child > span{
+    color: skyblue;
+}
+
 .days > th {
     display: flex;
     width: 60px;
@@ -88,10 +96,10 @@ tr {
     margin: auto;
 }
 
-.days > th:first-child {
+.days > th:first-child > span {
     color: red;
 }
-.days > th:nth-child(7) {
+.days > th:nth-child(7) > span {
     color: skyblue;
 }
 
@@ -123,4 +131,45 @@ td {
 
 td:hover {
     background-color: rgb(250, 235, 220);
+}
+
+@media screen and (max-width:1830px) {
+    .calendar {
+        width: 470px;
+
+    }
+}
+
+@media screen and (max-width:1730px) {
+    .calendar {
+        width: 450px;
+        right: 8vw;
+    }
+}
+
+@media screen and (max-width:1620px) {
+    .calendar {
+        width: 430px;
+        right: 6vw;
+    }
+} 
+
+@media screen and (max-width:1520px) {
+    .calendar {
+        width: 410px;
+        right: 4vw;
+    } 
+}
+
+@media screen and (max-width:1430px) {
+    .calendar {
+        width: 390px;
+        right: 2vw;
+    } 
+}
+
+@media screen and (max-width:1350px) {
+    .calendar {
+        display: none;
+    } 
 }
