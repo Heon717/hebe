@@ -1,17 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import TodoCreate from "./TodoCreate.js";
 import TodoList from "./TodoList.js";
 import TodoCalendar from "./TodoCalendar.js";
 import "../../css/Todo/TodoCalendar.css";
 import "../../css/Todo/Template.css";
 import axios from "axios";
+// import { LoginInfoContext } from './../../App';
 
 const Template = () => {
     const [today, setToday] = useState("");
     const [list, setList] = useState([]);
+    const [calendarToggle,setCalendarToggle] = useState(false);
+    const Cal_on = () => {
+        setCalendarToggle(true);
+        if(calendarToggle===true) {
+            setCalendarToggle(false);
+        }
+    }
 
-    const testList = useRef([]);
-    const [id,setId] = useState(1);
+    // const loginUserInfo = useContext(LoginInfoContext);
 
     const apiTodo = () => {
         // return new Promise((resolve, reject) => {
@@ -32,40 +39,21 @@ const Template = () => {
             url: "/api/todo",
             method: "post",
             params: {
-                list: list,
+                // iuser: loginUserInfo.iuser,
+                iuser: 1,
             },
         })
             .then((response) => {
                 setList(response.data);
                 console.log(response.data);
-                testList.current = response.data;
-                console.log(
-                    "/api/todo 첫번째 then testList : " + testList.current
-                );
             })
             .catch((err) => {
                 console.error("에러 : " + err);
             })
-            .then(() => {
-                console.log(list);
-            });
-        // });
     };
 
     useEffect(() => {
         apiTodo();
-        // .then(() => {
-        //     addCal();
-        // });
-        // }, 5000);
-        // axios
-        //     .get("api/todo/cal")
-        //     .then((response) => {
-        //         console.log(response);
-        //     })
-        //     .catch((err) => {
-        //         console.log(err);
-        //     });
     }, []);
 
     const prev = () => {
@@ -124,23 +112,30 @@ const Template = () => {
     };
 
     return (
-        <div id="todo">
-            <div id="template">
+        <div id="template">
+            <div id="todo">
                 <div id="head">
+                    <div>
                     <i
                         className="fas fa-left fa-angle-left fa-2x"
                         onClick={prev}
                     ></i>
-                    <h1 id="today">{today}</h1>
+                    </div>
+                    <div id="today">
+                        <h1>{today}</h1>
+                    </div>
+                    <div>
                     <i
                         className="fas fa-right fa-angle-right fa-2x"
                         onClick={next}
                     ></i>
-                    <TodoCreate list={list} setList={setList} today={today} id={id} />
+                    </div>
                 </div>
+                    <TodoCreate list={list} setList={setList} today={today} Cal_on={Cal_on}/>
                 <TodoList list={list} setList={setList} today={today} />
             </div>
-            <TodoCalendar today={today} setToday={setToday} />
+            {/* <TodoCalendar today={today} setToday={setToday} /> */}
+            {calendarToggle === false ?<TodoCalendar today={today} setToday={setToday} Cal_on={Cal_on}/> : null}
         </div>
     );
 };

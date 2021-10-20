@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import moment from "moment";
 import "../../css/Todo/TodoCalendar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import { LoginInfoContext } from './../../App';
 
-const TodoCalendar = ({ today, setToday }) => {
+const TodoCalendar = ({ today, setToday , Cal_on }) => {
     const [getMoment, setMoment] = useState(moment());
     const to_day = getMoment;
     const firstWeek = to_day.clone().startOf("month").week();
@@ -14,6 +14,8 @@ const TodoCalendar = ({ today, setToday }) => {
             : to_day.clone().endOf("month").week();
 
     const [dayArr, setDayArr] = useState([]);
+
+    // const loginUserInfo = useContext(LoginInfoContext);
 
     const nowMonth = useRef(parseInt(to_day.format("M")));
     if (nowMonth.current === 0) {
@@ -28,7 +30,10 @@ const TodoCalendar = ({ today, setToday }) => {
 
         axios
             .post("api/todo/regdt", null, {
-                params: { month: nowMonth.current },
+                params: { month: nowMonth.current, 
+                // iuser: loginUserInfo.iuser 
+                iuser: 1
+            },
             })
             .then((response) => {
                 let tempArr = response.data.map(
@@ -51,6 +56,7 @@ const TodoCalendar = ({ today, setToday }) => {
         setMoment(getMoment.clone().add(1, "month"));
         apiCalendar(1);
     };
+
 
     const calendarArr = () => {
         let result = [];
@@ -77,9 +83,9 @@ const TodoCalendar = ({ today, setToday }) => {
                                     <td key={days.format("D")}>
                                         <span
                                             className="day"
-                                            style={{ backgroundColor: "red" }}
-                                            onClick={() => {
-                                                setToday(
+                                            style={{ backgroundColor: "red" }}  // 오늘 날짜
+                                            onClick={() => {    // 오늘 날짜 클릭 시 달력 위 YYYY-MM-DD 변경
+                                                setToday(   
                                                     to_day.format("YYYY-MM-") +
                                                         days.format("DD")
                                                 );
@@ -102,7 +108,7 @@ const TodoCalendar = ({ today, setToday }) => {
                                 return (
                                     <td
                                         key={days.format("D")}
-                                        style={{ backgroundColor: "gray" }}
+                                        style={{ backgroundColor: "black" , opacity:0.1}} // 지난 달 마지막 주 (29, 30, 31...), 다음 달 첫째 주 (1, 2, 3...)
                                     >
                                         <span
                                             className="day"
@@ -117,7 +123,7 @@ const TodoCalendar = ({ today, setToday }) => {
                                     <td key={days.format("D")}>
                                         <span
                                             className="day"
-                                            onClick={() => {
+                                            onClick={() => {    // 이번 달
                                                 setToday(
                                                     to_day.format("YYYY-MM-") +
                                                         days.format("DD")
@@ -155,6 +161,7 @@ const TodoCalendar = ({ today, setToday }) => {
                         console.log(nowMonth.current);
                     }}
                 />
+                <i className="close fas fa-times fa-2x" onClick={Cal_on}></i>
             </div>
             <div className="calendar_header">
                 <div className="calendar_header_controller">

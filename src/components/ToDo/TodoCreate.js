@@ -1,21 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../../css/Todo/TodoCreate.css";
 import axios from "axios";
+import { LoginInfoContext } from './../../App';
 
-const TodoCreate = ({ list, setList, today, id }) => {
-    const [on, setOn] = useState(true);
-    const [off, setOff] = useState(false);
-    let t_board = list.length;
+const TodoCreate = ({ list, setList, today , Cal_on}) => {
 
-    const onToggle = () => {
-        if (on === true) {
-            setOn(false);
-            setOff(true);
-        } else {
-            setOn(true);
-            setOff(false);
-        }
-    };
+    let t_num = list.length;
+
+    // const loginUserInfo = useContext(LoginInfoContext);
 
     const [text, setText] = useState("");
     const handleChange = (e) => {
@@ -34,12 +26,13 @@ const TodoCreate = ({ list, setList, today, id }) => {
             alert("내용을 입력해 주세요!");
             return;
         }
-        if (t_board !== 0) {
-            t_board = list[list.length - 1].t_board;
+        if (t_num !== 0) {
+            t_num = list[list.length - 1].t_num;
         }
         newArr.push({
-            i_user : id,
-            t_board: t_board + 1,
+            // iuser : loginUserInfo.iuser,
+            iuser: 1,
+            t_num: t_num + 1,
             t_text: text,
             done: false,
             regdt: today,
@@ -66,30 +59,16 @@ const TodoCreate = ({ list, setList, today, id }) => {
 
     return (
         <div className="insertForm">
-            {off && (
-                <>
-                    <input
-                        type="text"
-                        className="insert"
-                        onChange={handleChange}
-                        placeholder="  입력 후 , Enter "
-                        onKeyPress={handleKeyPress}
-                    />
-                    <i onClick={save} className="plus fas fa-plus fa-2x"></i>
-                </>
-            )}
-            {on && (
-                <i
-                    onClick={onToggle}
-                    className="toggle fas fa-toggle-on fa-3x"
-                ></i>
-            )}
-            {off && (
-                <i
-                    onClick={onToggle}
-                    className="toggle fas fa-toggle-off fa-3x"
-                ></i>
-            )}
+            <input
+                type="text"
+                className="insert"
+                onChange={handleChange}
+                placeholder="  입력 후 , Enter "
+                onKeyPress={handleKeyPress}
+                maxlength='54'
+            />
+            <i onClick={save} className="plus far fa-plus-square fa-2x"></i>
+            <i onClick={Cal_on} className="cal far fa-calendar-alt fa-2x"></i>
         </div>
     );
 };
