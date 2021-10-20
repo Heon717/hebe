@@ -4,7 +4,7 @@ import "../../css/Todo/TodoCalendar.css";
 import axios from "axios";
 import { LoginInfoContext } from './../../App';
 
-const TodoCalendar = ({ today, setToday }) => {
+const TodoCalendar = ({ today, setToday , Cal_on }) => {
     const [getMoment, setMoment] = useState(moment());
     const to_day = getMoment;
     const firstWeek = to_day.clone().startOf("month").week();
@@ -56,6 +56,7 @@ const TodoCalendar = ({ today, setToday }) => {
         setMoment(getMoment.clone().add(1, "month"));
         apiCalendar(1);
     };
+
 
     const calendarArr = () => {
         let result = [];
@@ -160,6 +161,7 @@ const TodoCalendar = ({ today, setToday }) => {
                         console.log(nowMonth.current);
                     }}
                 />
+                <i className="close fas fa-times fa-2x" onClick={Cal_on}></i>
             </div>
             <div className="calendar_header">
                 <div className="calendar_header_controller">

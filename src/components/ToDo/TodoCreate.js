@@ -3,7 +3,7 @@ import "../../css/Todo/TodoCreate.css";
 import axios from "axios";
 import { LoginInfoContext } from './../../App';
 
-const TodoCreate = ({ list, setList, today }) => {
+const TodoCreate = ({ list, setList, today , Cal_on}) => {
 
     let t_num = list.length;
 
@@ -65,9 +65,10 @@ const TodoCreate = ({ list, setList, today }) => {
                 onChange={handleChange}
                 placeholder="  입력 후 , Enter "
                 onKeyPress={handleKeyPress}
+                maxlength='54'
             />
             <i onClick={save} className="plus far fa-plus-square fa-2x"></i>
-            <i className="cal far fa-calendar-alt fa-2x"></i>
+            <i onClick={Cal_on} className="cal far fa-calendar-alt fa-2x"></i>
         </div>
     );
 };

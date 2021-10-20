@@ -18,6 +18,13 @@
     width: 100%;
 }
 
+.close {
+    position: absolute;
+    color: white;
+    top: 20px;
+    right: 20px;
+}
+
 .calendar_image > img {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -136,7 +143,24 @@ td:hover {
 @media screen and (max-width:1830px) {
     .calendar {
         width: 470px;
-
+    }
+    .calendar_header {
+        width: 470px;
+    }
+    .prevBtn {
+        left: 90px;
+    }
+    .nextBtn {
+        right: 90px;
+    }
+    tbody {
+        margin-left: 25px;
+    }
+    .days > th {
+        width: 57px;
+    }
+    td {
+        width: 57px;
     }
 }
 
@@ -145,12 +169,45 @@ td:hover {
         width: 450px;
         right: 8vw;
     }
+    .calendar_header {
+        width: 450px;
+    }
+    .prevBtn {
+        left: 80px;
+    }
+    .nextBtn {
+        right: 80px;
+    }
+    .days > th {
+        width: 55px;
+    }
+    td {
+        width: 55px;
+    }
 }
 
 @media screen and (max-width:1620px) {
     .calendar {
         width: 430px;
         right: 6vw;
+    }
+    .calendar_header {
+        width: 430px;
+    }
+    .prevBtn {
+        left: 70px;
+    }
+    .nextBtn {
+        right: 70px;
+    }
+    tbody {
+        margin-left: 23px;
+    }
+    .days > th {
+        width: 53px;
+    }
+    td {
+        width: 53px;
     }
 } 
 
@@ -159,17 +216,81 @@ td:hover {
         width: 410px;
         right: 4vw;
     } 
+    .calendar_header {
+        width: 410px;
+    }
+    .prevBtn {
+        left: 60px;
+    }
+    .nextBtn {
+        right: 60px;
+    }
+    tbody {
+        margin-left: 20px;
+    }
+    .days > th {
+        width: 51px;
+    }
+    td {
+        width: 51px;
+    }
 }
 
 @media screen and (max-width:1430px) {
     .calendar {
         width: 390px;
         right: 2vw;
-    } 
+    }
+    .calendar_header {
+        width: 390px;
+    }
+    .prevBtn {
+        left: 50px;
+    }
+    .nextBtn {
+        right: 50px;
+    }
+    tbody {
+        margin-left: 17px;
+    }
+    .days > th {
+        width: 49px;
+    }
+    td {
+        width: 49px;
+    }
 }
 
 @media screen and (max-width:1350px) {
     .calendar {
-        display: none;
+        /* display: none; */
+        left: 30vw;
+        z-index: 99;
+    } 
+}
+
+@media screen and (max-width:890px) {
+    .calendar {
+        top:10px;
+        left: 25vw;
+        z-index: 99;
+    } 
+}
+
+@media screen and (max-width:750px) {
+    .calendar {
+        left: 20vw;
+    } 
+}
+
+@media screen and (max-width:650px) {
+    .calendar {
+        left: 10vw;
+    } 
+}
+
+@media screen and (max-width:450px) {
+    .calendar {
+        left: 8vw;
     } 
 }

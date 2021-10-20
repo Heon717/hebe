@@ -4,7 +4,6 @@
     padding-left: 20px;
     height: 50px;
     width: 100%;
-    border: 1px solid #ffffff;
     outline: none;
     background-color: #867ec7;
     background: -webkit-linear-gradient(left, #867ec7, #d57272);
@@ -35,24 +34,34 @@ input[type="text"]:-ms-clear {
 .plus {
     position: absolute;
     top: 6px;
-    padding-left: 1.5vw;
+    padding-left: 0.5vw;
     color: #ffffff;
     cursor: pointer;
 }
 
 .cal {
-    display: none;
     position: absolute;
     top: 4px;
-    padding-left: 5vw;
-    /* color: #ffffff; */
+    padding-left: 2.8vw;
     color: #ffffff;
     cursor: pointer;
 }
 
-@media screen and (max-width:1350px) {
+@media screen and (max-width:1600px) {
+    .plus {
+        padding-left: 1vw;
+    }
     .cal {
-        display: inline-block;
+        padding-left: 3.5vw;
+    }
+}
+
+@media screen and (max-width:1350px) {
+    .plus {
+        padding-left: 1vw;
+    }
+    .cal {
+        padding-left: 4.5vw;
     }
    }
 
@@ -110,6 +119,22 @@ input[type="text"]:-ms-clear {
     }
     .cal {
         padding-left: 7vw;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    input {
+        width: 10%;
+        position: relative;
+        right: 4px;
+    }
+    .plus {
+        right:32px;
+        z-index: 2;
+    }
+    .cal {
+        right: 2px;
+        z-index: 1;
     }
 }
 

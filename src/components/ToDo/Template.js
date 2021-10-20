@@ -10,6 +10,13 @@ import axios from "axios";
 const Template = () => {
     const [today, setToday] = useState("");
     const [list, setList] = useState([]);
+    const [calendarToggle,setCalendarToggle] = useState(false);
+    const Cal_on = () => {
+        setCalendarToggle(true);
+        if(calendarToggle===true) {
+            setCalendarToggle(false);
+        }
+    }
 
     // const loginUserInfo = useContext(LoginInfoContext);
 
@@ -124,10 +131,11 @@ const Template = () => {
                     ></i>
                     </div>
                 </div>
-                    <TodoCreate list={list} setList={setList} today={today} />
+                    <TodoCreate list={list} setList={setList} today={today} Cal_on={Cal_on}/>
                 <TodoList list={list} setList={setList} today={today} />
             </div>
-            <TodoCalendar today={today} setToday={setToday} />
+            {/* <TodoCalendar today={today} setToday={setToday} /> */}
+            {calendarToggle === false ?<TodoCalendar today={today} setToday={setToday} Cal_on={Cal_on}/> : null}
         </div>
     );
 };

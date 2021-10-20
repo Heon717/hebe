@@ -20,7 +20,6 @@ const TodoItem = ({ list, setList, index, item, today }) => {
             setToggle1(false);
             setToggle2(true);
             item.done = true;
-            // setList(list[index].done);
             let newArr = [...list];
             newArr[index].done = item.done;
             setList(newArr);
@@ -102,7 +101,7 @@ const TodoItem = ({ list, setList, index, item, today }) => {
                     {toggle1 && !updateToggle && (<span className={item.done === false ? "check_out" : "check_in"}><p>{item.t_text}</p></span>)}
 
                     {/* 글 수정눌렀을 때 value 값 */}
-                    {updateToggle && (<input type="text" onChange={handleChange} onKeyPress={handleKeyPress}/>)}
+                    {updateToggle && (<input className="input_text" type="text" onChange={handleChange} onKeyPress={handleKeyPress} maxlength='54'/>)}
 
                     {/* 체크했을 때 ( 글자색 회색으로 ) */}
                     {toggle2 && !updateToggle ? (<span className="check_in"><p>{item.t_text}</p></span>) : null}

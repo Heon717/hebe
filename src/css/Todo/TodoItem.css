@@ -116,7 +116,6 @@
 }
 
 p {
-    /* width: 84%; */
     font-size: 18px;
     font-family: "GmarketSans";
 }
@@ -158,5 +157,29 @@ p {
     }
     p {
         width: 72%;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .item > input {
+        width: 72%;
+    }
+    .check_in>p{
+        font-size: 16px;
+    }
+    .check_out>p{
+        font-size: 16px;
+    }
+    .upd_on{
+        right: 29px;
+    }
+    .upd_off{
+        right: 29px;
+    }
+    .del_on{
+        right: 9px;
+    }
+    .del_off{
+        right: 9px;
     }
 }
